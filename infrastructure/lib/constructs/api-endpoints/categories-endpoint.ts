@@ -20,7 +20,7 @@ export class categoriesEndpoints extends Construct {
         const createCategories = new NodejsFunction(this, `${id}CreateCategories`, {
             functionName: 'CreateCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/create-categories.ts',
+            entry: './lib/handlers/api/backend/categories/create.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +37,7 @@ export class categoriesEndpoints extends Construct {
         const updateCategories = new NodejsFunction(this, `${id}UpdateCategories`, {
             functionName: 'UpdateCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/update-categories.ts',
+            entry: './lib/handlers/api/backend/categories/update.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +54,7 @@ export class categoriesEndpoints extends Construct {
         const deleteCategories = new NodejsFunction(this, `${id}DeleteCategories`, {
             functionName: 'DeleteCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/delete-categories.ts',
+            entry: './lib/handlers/api/backend/categories/delete.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +71,7 @@ export class categoriesEndpoints extends Construct {
         const getCategories = new NodejsFunction(this, `${id}GetCategories`, {
             functionName: 'GetCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/get-categories.ts',
+            entry: './lib/handlers/api/backend/categories/get.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

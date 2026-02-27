@@ -20,7 +20,7 @@ export class timelineEndpoints extends Construct {
         const createTimeline = new NodejsFunction(this, `${id}CreateTimeline`, {
             functionName: 'CreateTimeline',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/timeline/create-timeline.ts',
+            entry: './lib/handlers/api/backend/timeline/create.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +37,7 @@ export class timelineEndpoints extends Construct {
         const updateTimeline = new NodejsFunction(this, `${id}UpdateTimeline`, {
             functionName: 'UpdateTimeline',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/timeline/update-timeline.ts',
+            entry: './lib/handlers/api/backend/timeline/update.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +54,7 @@ export class timelineEndpoints extends Construct {
         const deleteTimeline = new NodejsFunction(this, `${id}DeleteTimeline`, {
             functionName: 'DeleteTimeline',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/timeline/delete-timeline.ts',
+            entry: './lib/handlers/api/backend/timeline/delete.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +71,7 @@ export class timelineEndpoints extends Construct {
         const getTimeline = new NodejsFunction(this, `${id}GetTimeline`, {
             functionName: 'GetTimeline',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/timeline/get-timeline.ts',
+            entry: './lib/handlers/api/backend/timeline/get.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

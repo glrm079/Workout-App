@@ -20,7 +20,7 @@ export class exercisesEndpoints extends Construct {
         const createExercises = new NodejsFunction(this, `${id}CreateExercises`, {
             functionName: 'CreateExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/create-exercises.ts',
+            entry: './lib/handlers/api/backend/exercises/create.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +37,7 @@ export class exercisesEndpoints extends Construct {
         const updateExercises = new NodejsFunction(this, `${id}UpdateExercises`, {
             functionName: 'UpdateExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/update-exercises.ts',
+            entry: './lib/handlers/api/backend/exercises/update.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +54,7 @@ export class exercisesEndpoints extends Construct {
         const deleteExercises = new NodejsFunction(this, `${id}DeleteExercises`, {
             functionName: 'DeleteExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/delete-exercises.ts',
+            entry: './lib/handlers/api/backend/exercises/delete.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +71,7 @@ export class exercisesEndpoints extends Construct {
         const getExercises = new NodejsFunction(this, `${id}GetExercises`, {
             functionName: 'GetExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/get-exercises.ts',
+            entry: './lib/handlers/api/backend/exercises/get.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

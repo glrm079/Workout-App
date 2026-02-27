@@ -20,7 +20,7 @@ export class weightEndpoints extends Construct {
         const createWeight = new NodejsFunction(this, `${id}CreateWeight`, {
             functionName: 'CreateWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/create-weight.ts',
+            entry: './lib/handlers/api/backend/weight/create.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +37,7 @@ export class weightEndpoints extends Construct {
         const updateWeight = new NodejsFunction(this, `${id}UpdateWeight`, {
             functionName: 'UpdateWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/update-weight.ts',
+            entry: './lib/handlers/api/backend/weight/update.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +54,7 @@ export class weightEndpoints extends Construct {
         const deleteWeight = new NodejsFunction(this, `${id}DeleteWeight`, {
             functionName: 'DeleteWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/delete-weight.ts',
+            entry: './lib/handlers/api/backend/weight/delete.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +71,7 @@ export class weightEndpoints extends Construct {
         const getWeight = new NodejsFunction(this, `${id}GetWeight`, {
             functionName: 'GetWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/get-weight.ts',
+            entry: './lib/handlers/api/backend/weight/get.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

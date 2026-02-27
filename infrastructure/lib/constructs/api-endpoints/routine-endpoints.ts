@@ -20,7 +20,7 @@ export class routineEndpoints extends Construct {
         const createRoutine = new NodejsFunction(this, `${id}CreateRoutine`, {
             functionName: 'CreateRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routine/create-routine.ts',
+            entry: './lib/handlers/api/backend/routines/create.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +37,7 @@ export class routineEndpoints extends Construct {
         const updateRoutine = new NodejsFunction(this, `${id}UpdateRoutine`, {
             functionName: 'UpdateRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routine/update-routine.ts',
+            entry: './lib/handlers/api/backend/routines/update.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +54,7 @@ export class routineEndpoints extends Construct {
         const deleteRoutine = new NodejsFunction(this, `${id}DeleteRoutine`, {
             functionName: 'DeleteRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routine/delete-routine.ts',
+            entry: './lib/handlers/api/backend/routines/delete.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +71,7 @@ export class routineEndpoints extends Construct {
         const getRoutine = new NodejsFunction(this, `${id}GetRoutine`, {
             functionName: 'GetRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routine/get-routine.ts',
+            entry: './lib/handlers/api/backend/routines/get.ts',
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
