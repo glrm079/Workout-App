@@ -16,7 +16,7 @@ export class timelineDatabase extends Construct {
                 type: AttributeType.STRING
             },
             sortKey: {
-                name: 'timelineId',
+                name: 'date',
                 type: AttributeType.STRING
             }
         });

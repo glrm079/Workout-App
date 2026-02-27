@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.161"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.999.0",
+    "@aws-sdk/util-dynamodb": "^3.996.1",
+    "uuid": "^13.0.0"
+  }
+}
