@@ -19,7 +19,7 @@ export class DatabaseConstructor extends aws_dynamodb.Table {
             partitionKey: props.partitionKey,
             sortKey: props.sortKey,
             tableName: props.name,
-            billingMode: aws_dynamodb.BillingMode.PROVISIONED,
+            billingMode: aws_dynamodb.BillingMode.PAY_PER_REQUEST,
             readCapacity: 5,
             writeCapacity: 5,
             deletionProtection: true,

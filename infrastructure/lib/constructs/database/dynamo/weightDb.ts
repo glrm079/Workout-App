@@ -4,13 +4,13 @@ import { AttributeType } from 'aws-cdk-lib/aws-dynamodb';
 import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 import { DynamoTablesProps } from './index';
 
-export class categoriesDatabase extends Construct {
-    public readonly categoriesDatabase: DatabaseConstructor;
+export class weighTDatabase extends Construct {
+    public readonly weightDatabase: DatabaseConstructor;
     constructor(scope: Construct, id: string, props: DynamoTablesProps) {
         super(scope, id);
 
-        this.categoriesDatabase = new DatabaseConstructor(this, 'CategoriesDatabase', {
-            name: 'CategoriesDatabase',
+        this.weightDatabase = new DatabaseConstructor(this, 'WeightDatabase', {
+            name: 'WeightDatabase',
             partitionKey: {
                 name: 'userId',
                 type: AttributeType.STRING
@@ -21,10 +21,10 @@ export class categoriesDatabase extends Construct {
             }
         });
 
-        new StringParameter(this, 'CategoriesDatabaseTableNameParameter', {
-            parameterName: '/categoriesDatabase/tableName',
-            stringValue: this.categoriesDatabase.tableName,
-            description: 'DynamoDB Table Name for Categories'
+        new StringParameter(this, 'WeightDatabaseTableNameParameter', {
+            parameterName: '/weightDatabase/tableName',
+            stringValue: this.weightDatabase.tableName,
+            description: 'DynamoDB Table Name for Weight'
         });
     }
 }

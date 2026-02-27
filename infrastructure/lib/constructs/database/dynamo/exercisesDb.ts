@@ -2,14 +2,11 @@ import { Construct } from 'constructs';
 import { DatabaseConstructor } from '../index';
 import { AttributeType } from 'aws-cdk-lib/aws-dynamodb';
 import { StringParameter } from 'aws-cdk-lib/aws-ssm';
-
-export interface DynamoTableProps {
-    importOnly?: boolean;
-}
+import { DynamoTablesProps } from './index';
 
 export class exercisesDatabase extends Construct {
     public readonly exercisesDatabase: DatabaseConstructor;
-    constructor(scope: Construct, id: string, props: DynamoTableProps) {
+    constructor(scope: Construct, id: string, props: DynamoTablesProps) {
         super(scope, id);
 
         this.exercisesDatabase = new DatabaseConstructor(this, 'ExercisesDatabase', {

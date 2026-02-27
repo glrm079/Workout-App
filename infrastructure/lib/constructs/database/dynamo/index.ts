@@ -3,8 +3,9 @@ import { RoutineDatabase } from './routineDb';
 import { timelineDatabase } from './timelineDb';
 import { categoriesDatabase } from './categoriesDb';
 import { exercisesDatabase } from './exercisesDb';
+import { weighTDatabase } from './weightDb';
 
-interface DynamoTablesProps {
+export interface DynamoTablesProps {
     importOnly?: boolean;
 }
 
@@ -13,6 +14,7 @@ export class DynamoTables extends Construct {
     public readonly timelineDatabase: timelineDatabase;
     public readonly categoriesDatabase: categoriesDatabase;
     public readonly exercisesDatabase: exercisesDatabase;
+    public readonly weightDatabase: weighTDatabase;
 
     constructor(scope: Construct, id: string, props: DynamoTablesProps) {
         super(scope, id);
@@ -30,6 +32,9 @@ export class DynamoTables extends Construct {
         });
 
         this.exercisesDatabase = new exercisesDatabase(this, 'ExercisesDatabase', {
+            importOnly: props.importOnly || false
+        });
+        this.weightDatabase = new weighTDatabase(this, 'WeightDatabase', {
             importOnly: props.importOnly || false
         });
     }
