@@ -1,48 +1,47 @@
 import { DynamoDBClient, PutItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import { marshall } from '@aws-sdk/util-dynamodb';
-import { Categories } from '../../../@types/categories';
+import { Exercise } from '../../../@types/exercises';
 
 type CreateRoutineInput = {
-    payload: Partial<Categories>;
+    payload: Partial<Exercise>;
     dynamoClient: DynamoDBClient;
 };
 
-export const updateCategories = async ({ payload, dynamoClient }: CreateRoutineInput) => {
+export const updateExercises = async ({ payload, dynamoClient }: CreateRoutineInput) => {
     const executionTime = new Date().toISOString();
- 
 
     const updateItemCommand = new UpdateItemCommand({
-        TableName: process.env.CATEGORIES_TABLE_NAME,
+        TableName: process.env.EXERCISES_TABLE_NAME,
         Key: marshall({
             userId: payload.userId,
-            categoryId: payload.categoryId
+            exerciseId: payload.exerciseId
         }),
         UpdateExpression: `
-        SET displayName = :displayName,
-            color = :color,
+            displayName = :displayName,
+            description = :description,
             exercisesId = :exercisesId,
             updatedAt = :updatedAt
     `,
         ExpressionAttributeValues: marshall({
             ':displayName': payload.displayName,
-            ':color': payload.color,
-            ':exercisesId': payload.exercisesId,
+            ':description': payload.description,
+            ':exercisesId': payload.exerciseId,
             ':updatedAt': executionTime
         }),
-        ConditionExpression: 'attribute_exists(categoryId)'
+        ConditionExpression: 'attribute_exists(exerciseId)'
     });
 
     try {
         await dynamoClient.send(updateItemCommand);
         return {
             success: true,
-            message: 'Category updated successfully'
+            message: 'Exercise updated successfully'
         };
     } catch (error) {
-        console.error('Error updating category: ', error);
+        console.error('Error updating exercise: ', error);
         return {
             success: false,
-            message: 'Failed to update category',
+            message: 'Failed to update exercise',
             error
         };
     }
