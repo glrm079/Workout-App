@@ -6,7 +6,11 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { validCreateCategories } from '../../../utils/lambda/categories/validCreateCategories';
 
 export const lambdaHandler = async (event: APIGatewayEvent) => {
-    const body = event.body as unknown as Categories;
+    if (!event.body) {
+        return generateLambdaResponse({ error: 'Missing body' }, 400);
+    }
+
+    const body = JSON.parse(event.body) as Categories;
     const { displayName, color, exercisesId, userId } = body;
 
     try {

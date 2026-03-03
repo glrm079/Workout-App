@@ -15,12 +15,14 @@ export class categoriesEndpoints extends Construct {
     constructor(scope: Construct, id: string, props: LambdaFunctionsProps) {
         super(scope, id);
 
+        const path = './lib/handlers/api/';
+
         const categoriesResource = props.apiGateway.root.addResource('categories');
 
         const createCategories = new NodejsFunction(this, `${id}CreateCategories`, {
             functionName: 'CreateCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/create.ts',
+            entry: `${path}categories/create.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +39,7 @@ export class categoriesEndpoints extends Construct {
         const updateCategories = new NodejsFunction(this, `${id}UpdateCategories`, {
             functionName: 'UpdateCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/update.ts',
+            entry: `${path}categories/update.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +56,7 @@ export class categoriesEndpoints extends Construct {
         const deleteCategories = new NodejsFunction(this, `${id}DeleteCategories`, {
             functionName: 'DeleteCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/delete.ts',
+            entry: `${path}categories/delete.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +73,7 @@ export class categoriesEndpoints extends Construct {
         const getCategories = new NodejsFunction(this, `${id}GetCategories`, {
             functionName: 'GetCategories',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/categories/get.ts',
+            entry: `${path}categories/get.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

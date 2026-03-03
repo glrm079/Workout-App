@@ -15,12 +15,14 @@ export class routineEndpoints extends Construct {
     constructor(scope: Construct, id: string, props: LambdaFunctionsProps) {
         super(scope, id);
 
+        const path = './lib/handlers/api/';
+
         const routineResource = props.apiGateway.root.addResource('routine');
 
         const createRoutine = new NodejsFunction(this, `${id}CreateRoutine`, {
             functionName: 'CreateRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routines/create.ts',
+            entry: `${path}routines/create.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +39,7 @@ export class routineEndpoints extends Construct {
         const updateRoutine = new NodejsFunction(this, `${id}UpdateRoutine`, {
             functionName: 'UpdateRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routines/update.ts',
+            entry: `${path}routines/update.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +56,7 @@ export class routineEndpoints extends Construct {
         const deleteRoutine = new NodejsFunction(this, `${id}DeleteRoutine`, {
             functionName: 'DeleteRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routines/delete.ts',
+            entry: `${path}routines/delete.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +73,7 @@ export class routineEndpoints extends Construct {
         const getRoutine = new NodejsFunction(this, `${id}GetRoutine`, {
             functionName: 'GetRoutine',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/routines/get.ts',
+            entry: `${path}routines/get.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

@@ -15,12 +15,14 @@ export class weightEndpoints extends Construct {
     constructor(scope: Construct, id: string, props: LambdaFunctionsProps) {
         super(scope, id);
 
+        const path = './lib/handlers/api/';
+
         const weightResource = props.apiGateway.root.addResource('weight');
 
         const createWeight = new NodejsFunction(this, `${id}CreateWeight`, {
             functionName: 'CreateWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/create.ts',
+            entry: `${path}weight/create.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +39,7 @@ export class weightEndpoints extends Construct {
         const updateWeight = new NodejsFunction(this, `${id}UpdateWeight`, {
             functionName: 'UpdateWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/update.ts',
+            entry: `${path}weight/update.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +56,7 @@ export class weightEndpoints extends Construct {
         const deleteWeight = new NodejsFunction(this, `${id}DeleteWeight`, {
             functionName: 'DeleteWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/delete.ts',
+            entry: `${path}weight/delete.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +73,7 @@ export class weightEndpoints extends Construct {
         const getWeight = new NodejsFunction(this, `${id}GetWeight`, {
             functionName: 'GetWeight',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/weight/get.ts',
+            entry: `${path}weight/get.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),

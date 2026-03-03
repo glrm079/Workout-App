@@ -15,12 +15,14 @@ export class exercisesEndpoints extends Construct {
     constructor(scope: Construct, id: string, props: LambdaFunctionsProps) {
         super(scope, id);
 
+        const path = './lib/handlers/api/';
+
         const exercisesResource = props.apiGateway.root.addResource('exercises');
 
         const createExercises = new NodejsFunction(this, `${id}CreateExercises`, {
             functionName: 'CreateExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/create.ts',
+            entry: `${path}exercises/create.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -37,7 +39,7 @@ export class exercisesEndpoints extends Construct {
         const updateExercises = new NodejsFunction(this, `${id}UpdateExercises`, {
             functionName: 'UpdateExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/update.ts',
+            entry: `${path}exercises/update.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -54,7 +56,7 @@ export class exercisesEndpoints extends Construct {
         const deleteExercises = new NodejsFunction(this, `${id}DeleteExercises`, {
             functionName: 'DeleteExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/delete.ts',
+            entry: `${path}exercises/delete.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
@@ -71,7 +73,7 @@ export class exercisesEndpoints extends Construct {
         const getExercises = new NodejsFunction(this, `${id}GetExercises`, {
             functionName: 'GetExercises',
             runtime: lambda.Runtime.NODEJS_20_X,
-            entry: './lib/handlers/api/backend/exercises/get.ts',
+            entry: `${path}exercises/get.ts`,
             handler: 'handler',
             memorySize: 512,
             timeout: cdk.Duration.seconds(30),
