@@ -1,31 +1,33 @@
 import { DynamoDBClient, PutItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import { marshall } from '@aws-sdk/util-dynamodb';
-import { Exercise } from '../../../@types/exercises';
+import { Weight } from '../../../@types/weight';
 
-type UpdateExercisesInput = {
-    payload: Partial<Exercise>;
+type updateWeightInput = {
+    payload: Partial<Weight>;
     dynamoClient: DynamoDBClient;
 };
 
-export const updateExercises = async ({ payload, dynamoClient }: UpdateExercisesInput) => {
+export const updateWeight = async ({ payload, dynamoClient }: updateWeightInput) => {
     const executionTime = new Date().toISOString();
 
     const updateItemCommand = new UpdateItemCommand({
-        TableName: process.env.EXERCISES_TABLE_NAME,
+        TableName: process.env.WEIGHT_TABLE_NAME,
         Key: marshall({
             userId: payload.userId,
-            exerciseId: payload.exerciseId
+            exerciseId: payload.weightId
         }),
         UpdateExpression: `
             displayName = :displayName,
             description = :description,
-            exercisesId = :exercisesId,
-            updatedAt = :updatedAt
+            weight = :weight,
+            weightId: :weightId,
+            updatedAt = :updatedAt,
+            date = :date
     `,
         ExpressionAttributeValues: marshall({
-            ':displayName': payload.displayName,
-            ':description': payload.description,
-            ':exercisesId': payload.exerciseId,
+            weightId: payload.weightId,
+            date: payload.date,
+            ':weight': payload.weight,
             ':updatedAt': executionTime
         }),
         ConditionExpression: 'attribute_exists(exerciseId)'

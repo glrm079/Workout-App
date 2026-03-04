@@ -1,10 +1,10 @@
 import { Categories } from '../../../@types/categories';
 
-type validCreateCategoriesInput = {
+type validUpdateCategoriesInput = {
     payload: Partial<Categories>;
 };
 
-export const validUpdateCategories = ({ payload }: validCreateCategoriesInput) => {
+export const validUpdateCategories = ({ payload }: validUpdateCategoriesInput) => {
     const { displayName, color, exercisesId, userId, categoryId } = payload;
 
     if (!displayName || typeof displayName !== 'string') {

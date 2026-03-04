@@ -1,10 +1,10 @@
 import { Exercise } from '../../../@types/exercises';
 
-type validCreateRoutineInput = {
+type validUpdateExercisesInput = {
     payload: Partial<Exercise>;
 };
 
-export const validUpdateExercise = ({ payload }: validCreateRoutineInput) => {
+export const validUpdateExercises = ({ payload }: validUpdateExercisesInput) => {
     const { displayName, description, userId, routineIds, exerciseId } = payload;
 
     if (!displayName || typeof displayName !== 'string') {

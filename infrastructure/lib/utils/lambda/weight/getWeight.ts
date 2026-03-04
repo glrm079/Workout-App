@@ -1,25 +1,25 @@
 import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb';
-import { Categories } from '../../../@types/categories';
+import { Weight } from '../../../@types/weight';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 
-type GetCategoriesInput = {
-    payload: Partial<Categories>;
+type getWeightInput = {
+    payload: Partial<Weight>;
     dynamoClient: DynamoDBClient;
 };
 
-export const getCategories = async ({ payload, dynamoClient }: GetCategoriesInput) => {
+export const getWeight = async ({ payload, dynamoClient }: getWeightInput) => {
     try {
-        const { userId, categoryId } = payload;
-        const isSpecific = !!categoryId;
+        const { userId, weightId } = payload;
+        const isSpecific = !!weightId;
 
         const command = new QueryCommand({
-            TableName: process.env.CATEGORIES_TABLE_NAME,
-            KeyConditionExpression: isSpecific ? 'userId = :userId AND categoryId = :categoryId' : 'userId = :userId',
+            TableName: process.env.WEIGHT_TABLE_NAME,
+            KeyConditionExpression: isSpecific ? 'userId = :userId AND weightId = :weightId' : 'userId = :userId',
             ExpressionAttributeValues: marshall(
                 isSpecific
                     ? {
                           ':userId': userId,
-                          ':categoryId': categoryId
+                          ':weightId': weightId
                       }
                     : {
                           ':userId': userId
@@ -36,10 +36,10 @@ export const getCategories = async ({ payload, dynamoClient }: GetCategoriesInpu
             data: isSpecific ? (items[0] ?? null) : items
         };
     } catch (error) {
-        console.error('Error creating category: ', error);
+        console.error('Error getting weight: ', error);
         return {
             success: false,
-            message: 'Failed to create category',
+            message: 'Failed to get weight',
             error
         };
     }

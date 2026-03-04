@@ -1,25 +1,25 @@
 import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb';
-import { Categories } from '../../../@types/categories';
+import { Routine } from '../../../@types/routine';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 
-type GetCategoriesInput = {
-    payload: Partial<Categories>;
+type getRoutineInput = {
+    payload: Partial<Routine>;
     dynamoClient: DynamoDBClient;
 };
 
-export const getCategories = async ({ payload, dynamoClient }: GetCategoriesInput) => {
+export const getRoutine = async ({ payload, dynamoClient }: getRoutineInput) => {
     try {
-        const { userId, categoryId } = payload;
-        const isSpecific = !!categoryId;
+        const { userId, routineId } = payload;
+        const isSpecific = !!routineId;
 
         const command = new QueryCommand({
             TableName: process.env.CATEGORIES_TABLE_NAME,
-            KeyConditionExpression: isSpecific ? 'userId = :userId AND categoryId = :categoryId' : 'userId = :userId',
+            KeyConditionExpression: isSpecific ? 'userId = :userId AND routineId = :routineId' : 'userId = :userId',
             ExpressionAttributeValues: marshall(
                 isSpecific
                     ? {
                           ':userId': userId,
-                          ':categoryId': categoryId
+                          ':routineId': routineId
                       }
                     : {
                           ':userId': userId
@@ -36,10 +36,10 @@ export const getCategories = async ({ payload, dynamoClient }: GetCategoriesInpu
             data: isSpecific ? (items[0] ?? null) : items
         };
     } catch (error) {
-        console.error('Error creating category: ', error);
+        console.error('Error creating routine: ', error);
         return {
             success: false,
-            message: 'Failed to create category',
+            message: 'Failed to create routine',
             error
         };
     }

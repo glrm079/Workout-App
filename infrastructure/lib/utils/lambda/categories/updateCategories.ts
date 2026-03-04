@@ -2,12 +2,12 @@ import { DynamoDBClient, PutItemCommand, UpdateItemCommand } from '@aws-sdk/clie
 import { marshall } from '@aws-sdk/util-dynamodb';
 import { Categories } from '../../../@types/categories';
 
-type CreateRoutineInput = {
+type UpdateCategoriesInput = {
     payload: Partial<Categories>;
     dynamoClient: DynamoDBClient;
 };
 
-export const updateCategories = async ({ payload, dynamoClient }: CreateRoutineInput) => {
+export const updateCategories = async ({ payload, dynamoClient }: UpdateCategoriesInput) => {
     const executionTime = new Date().toISOString();
  
 

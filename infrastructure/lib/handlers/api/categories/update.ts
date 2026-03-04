@@ -36,7 +36,7 @@ export const lambdaHandler = async (event: APIGatewayEvent) => {
         });
 
         if (!success) {
-            return generateLambdaResponse({ error: saveError || 'Failed to create category' }, 400);
+            return generateLambdaResponse({ error: saveError || 'Failed to update category' }, 400);
         }
 
         return generateLambdaResponse(

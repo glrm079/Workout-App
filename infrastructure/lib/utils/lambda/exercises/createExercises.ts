@@ -3,12 +3,12 @@ import { marshall } from '@aws-sdk/util-dynamodb';
 import { Exercise } from '../../../@types/exercises';
 import { v4 as uuidv4 } from 'uuid';
 
-type CreateRoutineInput = {
+type CreateExerciseInput = {
     payload: Partial<Exercise>;
     dynamoClient: DynamoDBClient;
 };
 
-export const createExercises = async ({ payload, dynamoClient }: CreateRoutineInput) => {
+export const createExercises = async ({ payload, dynamoClient }: CreateExerciseInput) => {
     const executionTime = new Date().toISOString();
     const completeCreationPayload = {
         ...payload,

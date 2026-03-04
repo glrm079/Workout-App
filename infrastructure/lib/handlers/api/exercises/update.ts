@@ -3,7 +3,7 @@ import { Exercise } from '../../../@types/exercises';
 import { generateLambdaResponse } from '../../../utils/helpers/generateLambdaResponde';
 import { updateExercises } from '../../../utils/lambda/exercises/updateExercises';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { validUpdateExercise } from '../../../utils/lambda/exercises/validUpdateExercises';
+import { validUpdateExercises } from '../../../utils/lambda/exercises/validUpdateExercises';
 
 export const lambdaHandler = async (event: APIGatewayEvent) => {
     if (!event.body) {
@@ -14,7 +14,7 @@ export const lambdaHandler = async (event: APIGatewayEvent) => {
     const { displayName, description, userId, exerciseId } = body;
 
     try {
-        const { error } = await validUpdateExercise({ payload: body });
+        const { error } = await validUpdateExercises({ payload: body });
 
         if (error) {
             return generateLambdaResponse({ error: error.message }, 400);
@@ -35,7 +35,7 @@ export const lambdaHandler = async (event: APIGatewayEvent) => {
         });
 
         if (!success) {
-            return generateLambdaResponse({ error: saveError || 'Failed to create category' }, 400);
+            return generateLambdaResponse({ error: saveError || 'Failed to update exercise' }, 400);
         }
 
         return generateLambdaResponse(

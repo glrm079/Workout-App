@@ -2,12 +2,12 @@ import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb';
 import { Exercise } from '../../../@types/exercises';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 
-type CreateRoutineInput = {
+type GetExercisesInput = {
     payload: Partial<Exercise>;
     dynamoClient: DynamoDBClient;
 };
 
-export const getExercises = async ({ payload, dynamoClient }: CreateRoutineInput) => {
+export const getExercises = async ({ payload, dynamoClient }: GetExercisesInput) => {
     try {
         const { userId, exerciseId } = payload;
         const isSpecific = !!exerciseId;

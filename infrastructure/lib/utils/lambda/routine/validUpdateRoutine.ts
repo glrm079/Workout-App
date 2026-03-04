@@ -1,11 +1,11 @@
-import { Exercise } from '../../../@types/exercises';
+import { Routine } from '../../../@types/routine';
 
-type validCreateExercisesInput = {
-    payload: Partial<Exercise>;
+type validUpdateRoutineInput = {
+    payload: Partial<Routine>;
 };
 
-export const validCreateExercises = ({ payload }: validCreateExercisesInput) => {
-    const { displayName, description, userId, routineIds } = payload;
+export const validUpdateRoutine = ({ payload }: validUpdateRoutineInput) => {
+    const { displayName, description, userId, routineId } = payload;
 
     if (!displayName || typeof displayName !== 'string') {
         return { error: new Error('displayName is required and must be a string') };
@@ -19,12 +19,12 @@ export const validCreateExercises = ({ payload }: validCreateExercisesInput) => 
         return { error: new Error('description must be a string') };
     }
 
-    if (!routineIds) {
-        return { error: new Error('routineIds must be filled') };
-    }
-
     if (!userId || typeof userId !== 'string') {
         return { error: new Error('user needs to be logged in') };
+    }
+
+    if (routineId === undefined || typeof routineId !== 'string') {
+        return { error: new Error('routineId is required and must be a string') };
     }
 
     return { error: null };

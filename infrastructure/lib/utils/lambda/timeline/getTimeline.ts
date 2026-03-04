@@ -1,25 +1,25 @@
 import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb';
-import { Categories } from '../../../@types/categories';
+import { Timeline } from '../../../@types/timeline';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 
-type GetCategoriesInput = {
-    payload: Partial<Categories>;
+type getTimelineInput = {
+    payload: Partial<Timeline>;
     dynamoClient: DynamoDBClient;
 };
 
-export const getCategories = async ({ payload, dynamoClient }: GetCategoriesInput) => {
+export const getTimeline = async ({ payload, dynamoClient }: getTimelineInput) => {
     try {
-        const { userId, categoryId } = payload;
-        const isSpecific = !!categoryId;
+        const { userId, timelineId } = payload;
+        const isSpecific = !!timelineId;
 
         const command = new QueryCommand({
-            TableName: process.env.CATEGORIES_TABLE_NAME,
-            KeyConditionExpression: isSpecific ? 'userId = :userId AND categoryId = :categoryId' : 'userId = :userId',
+            TableName: process.env.TIMELINE_TABLE_NAME,
+            KeyConditionExpression: isSpecific ? 'userId = :userId AND timelineId = :timelineId' : 'userId = :userId',
             ExpressionAttributeValues: marshall(
                 isSpecific
                     ? {
                           ':userId': userId,
-                          ':categoryId': categoryId
+                          ':timelineId': timelineId
                       }
                     : {
                           ':userId': userId
@@ -36,10 +36,10 @@ export const getCategories = async ({ payload, dynamoClient }: GetCategoriesInpu
             data: isSpecific ? (items[0] ?? null) : items
         };
     } catch (error) {
-        console.error('Error creating category: ', error);
+        console.error('Error getting timeline: ', error);
         return {
             success: false,
-            message: 'Failed to create category',
+            message: 'Failed to get timeline',
             error
         };
     }
