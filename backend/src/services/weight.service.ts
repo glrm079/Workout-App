@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Weight } from "../@types/index";
+import { Weight } from "../../@types/index";
 import { weightRepository } from "../repositories/weight.repository";
 
 export const weightService = {
@@ -14,5 +14,11 @@ export const weightService = {
     };
 
     return weightRepository.save(newWeight);
+  },
+  getWeight(userId: string, weightId: string) {
+    if (weightId) {
+      return weightRepository.getById(userId, weightId);
+    }
+    return weightRepository.get(userId);
   },
 };

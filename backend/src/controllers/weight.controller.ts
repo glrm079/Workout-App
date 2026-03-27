@@ -20,4 +20,18 @@ export const weightController = {
       return res.status(500).json({ error: error.message });
     }
   },
+  getWeight(req: Request, res: Response) {
+    const { weightId, userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ error: "Missing user identification" });
+    }
+
+    try {
+      const result = weightService.getWeight(userId, weightId);
+      return res.status(201).json(result);
+    } catch (error) {
+      return res.status(400).json({ error: "No Data found for user" });
+    }
+  },
 };
