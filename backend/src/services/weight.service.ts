@@ -21,4 +21,19 @@ export const weightService = {
     }
     return weightRepository.get(userId);
   },
+
+  deleteWeight(userId: string, weightId: string) {
+    {
+      return weightRepository.delete(userId, weightId);
+    }
+  },
+
+  updateWeight(userId: string, weightId: string, weight: number, date: string) {
+    const weightToUpdate = weightRepository.getById(userId, weightId);
+
+    if (!weightToUpdate) {
+      throw new Error("Weight not found");
+    }
+    return weightRepository.update(userId, weightId, weight, date);
+  },
 };
