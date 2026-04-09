@@ -1,4 +1,4 @@
-import type { Categories, Weight } from "../../@types/index";
+import type { Categories } from "../../@types/index";
 
 const categoriesFakeDatabase: Categories[] = [];
 

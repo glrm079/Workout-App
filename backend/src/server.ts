@@ -6,10 +6,12 @@ app.use(express.urlencoded({ extended: true }));
 import weightRoutes from "./routes/weight.routes.js";
 import categoriesRoutes from "./routes/categories.routes.js";
 import exercisesRoutes from "./routes/exercises.routes.js";
+import routinesRoutes from "./routes/routine.routes.js";
 
 app.use("/exercise", exercisesRoutes);
 app.use("/weight", weightRoutes);
 app.use("/categories", categoriesRoutes);
+app.use("/routine", routinesRoutes);
 
 const PORT = 3000;
 
