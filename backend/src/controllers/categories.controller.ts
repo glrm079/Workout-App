@@ -1,15 +1,6 @@
 import { Request, Response } from "express";
 import { categoriesService } from "../services/categories.service";
 
-export interface Categories {
-  categoryId: string;
-  displayName: string;
-  color: string;
-  userId: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export const categoriesController = {
   createCategory(req: Request, res: Response) {
     if (!req.body) {

@@ -19,21 +19,12 @@ export interface Categories {
 export interface Exercise {
   exerciseId: string;
   routineIds: string[];
+  categoryIds: string[];
   displayName: string;
   description: string;
   userId: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Exercise {
-  exerciseId: string;
-  routineIds: string[];
-  displayName: string;
-  description: string;
-  userId: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface Routine {
@@ -42,8 +33,8 @@ export interface Routine {
   description: string;
   userId: string;
   enabled: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface Timeline {
@@ -52,14 +43,14 @@ export interface Timeline {
   exerciseId: string;
   routineId: string;
   date: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: number;
+  updatedAt: number;
   sets: WorkoutSet[];
 }
 
 export interface WorkoutSet {
   weight: number;
   reps: number;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: number;
+  updatedAt: number;
 }
