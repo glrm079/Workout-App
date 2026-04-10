@@ -49,6 +49,7 @@ export interface Timeline {
 }
 
 export interface WorkoutSet {
+  setId: string;
   weight: number;
   reps: number;
   createdAt: number;
