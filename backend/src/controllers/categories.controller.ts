@@ -20,8 +20,8 @@ export const categoriesController = {
         color,
       );
       return res.status(201).json(result);
-    } catch (error: any) {
-      return res.status(500).json({ error: error.message });
+    } catch (error: unknown) {
+      return res.status(500).json({ error: (error as Error).message });
     }
   },
 
