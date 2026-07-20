@@ -8,5 +8,4 @@ weightRoutes.get("/getWeight", weightController.getWeight);
 weightRoutes.delete("/deleteWeight", weightController.deleteWeight);
 weightRoutes.put("/updateWeight", weightController.updateWeight);
 
-
 export default weightRoutes;
