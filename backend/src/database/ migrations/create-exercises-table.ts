@@ -14,14 +14,3 @@ export async function createExercisesTable() {
     );
   `);
 }
-
-export interface Exercise {
-  exerciseId: string;
-  routineIds: string[];
-  categoryIds: string[];
-  displayName: string;
-  description: string;
-  userId: string;
-  createdAt: number;
-  updatedAt: number;
-}
