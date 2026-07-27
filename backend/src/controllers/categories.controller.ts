@@ -10,7 +10,7 @@ export const categoriesController = {
     const { userId, displayName, color } = req.body;
 
     if (!userId || !displayName || !color) {
-      return res.status(400).json({ error: "Missing required informations" });
+      return res.status(400).json({ error: "Missdocker-compose up -ding required informations" });
     }
 
     try {
