@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signInSchema } from "../../../shemas/AuthShema";
+import { PasswordInput } from "../passwordInput";
 
 type SignInForm = z.infer<typeof signInSchema>;
 
@@ -55,21 +56,9 @@ export default function SignInForm() {
           )}
         </Field>
         <Field className="flex gap-0">
-          <Input
-            type="password"
-            placeholder="Senha"
-            {...register("password")}
-            aria-invalid={!!errors.password}
-            required
-          />
-
-          {errors.password && (
-            <p className="text-red-700 text-sm mt-1">
-              {errors.password.message}
-            </p>
-          )}
+          <PasswordInput register={register} errors={errors} />
         </Field>
-        <Button className="p-5 bg-red-900 hover:bg-red-950" type="submit">
+        <Button className="p-5 bg-zinc-900 hover:bg-zinc-950" type="submit">
           Entrar
         </Button>
       </FieldGroup>

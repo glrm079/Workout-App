@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signInSchema } from "../../../shemas/AuthShema";
+import { PasswordInput } from "../passwordInput";
 
 type SignInForm = z.infer<typeof signInSchema>;
 
@@ -30,16 +31,18 @@ export default function SignUpPage() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FieldGroup className="typeset typeset-docs">
-        <h1 className="text-2xl text-zinc-900 font-bold">Criar conta</h1>
-        <p>
-          Já tem conta?{" "}
-          <a
-            className="text-red-700 hover:underline"
-            onClick={() => router.push("/sign-in")}
-          >
-            Entrar
-          </a>
-        </p>
+        <div className="flex flex-col gap-0">
+          <h1 className="text-4xl text-zinc-900 font-bold">Criar conta</h1>
+          <p>
+            Já tem conta?{" "}
+            <a
+              className="text-red-700 hover:underline"
+              onClick={() => router.push("/sign-in")}
+            >
+              Entrar
+            </a>
+          </p>
+        </div>
         <Field className="flex gap-0">
           <Input
             type="text"
@@ -67,32 +70,10 @@ export default function SignUpPage() {
           )}
         </Field>
         <Field className="flex gap-0">
-          <Input
-            type="password"
-            placeholder="Senha"
-            {...register("password")}
-            aria-invalid={!!errors.password}
-            required
-          />
-          {errors.password && (
-            <p className="text-red-700 text-sm mt-1">
-              {errors.password.message}
-            </p>
-          )}
+          <PasswordInput register={register} errors={errors} />
         </Field>
         <Field className="flex gap-0">
-          <Input
-            type="password"
-            placeholder="Confirme a senha"
-            {...register("password")}
-            aria-invalid={!!errors.password}
-            required
-          />
-          {errors.password && (
-            <p className="text-red-700 text-sm mt-1">
-              {errors.password.message}
-            </p>
-          )}
+          <PasswordInput register={register} errors={errors} />
         </Field>
         <Button className="p-5 bg-red-900 hover:bg-red-950" type="submit">
           Cadastrar
