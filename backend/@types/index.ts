@@ -55,3 +55,12 @@ export interface WorkoutSet {
   createdAt: number;
   updatedAt: number;
 }
+
+export interface User {
+  userId: string;
+  username: string;
+  email: string;
+  password: string;
+  createdAt: number;
+  updatedAt: number;
+}
