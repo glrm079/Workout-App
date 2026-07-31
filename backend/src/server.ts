@@ -1,4 +1,5 @@
 import express from "express";
+import userRoutes from "./auth/routes/user.routes.js";
 import { runMigrations } from "./database/runMigrations.js";
 import categoriesRoutes from "./routes/categories.routes.js";
 import exercisesRoutes from "./routes/exercises.routes.js";
@@ -13,6 +14,7 @@ app.use("/exercise", exercisesRoutes);
 app.use("/weight", weightRoutes);
 app.use("/categories", categoriesRoutes);
 app.use("/routine", routinesRoutes);
+app.use("/auth", userRoutes);
 
 const PORT = 3000;
 

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UserService } from "../services/user.service";
 
 export const UserController = {
-  createUser(req: Request, res: Response) {
+  createUser: async (req: Request, res: Response) => {
     if (!req.body) {
       return res.status(400).json({ error: "Missing requisition body" });
     }
@@ -22,7 +22,7 @@ export const UserController = {
     }
   },
 
-  signinUser(req: Request, res: Response) {
+  signinUser: async (req: Request, res: Response) => {
     if (!req.body) {
       return res.status(400).json({ error: "Missing requisition body" });
     }
@@ -34,16 +34,13 @@ export const UserController = {
     }
 
     try {
-      const isAuthenticated = UserService.signinUser(email, password);
+      const isAuthenticated = await UserService.signinUser(email, password);
 
       if (!isAuthenticated) {
         return res.status(401).json({ error: "Invalid credentials" });
       }
 
-      return res
-        .status(200)
-        .json({ message: "User authenticated successfully" });
-      isAuthenticated;
+      return res.status(200).json({ message: `token: ${isAuthenticated}` });
     } catch (error: unknown) {
       return res.status(500).json({ error: (error as Error).message });
     }
