@@ -1,15 +1,33 @@
 import { User } from "../../../@types";
-const usersFakeDatabase: User[] = [];
+import { db } from "../../database/connection";
 
 export const UserRepository = {
-  create(user: User): User {
-    usersFakeDatabase.push(user);
-    return user;
+  async create(user: User) {
+    const result = await db.query(
+      `
+      INSERT INTO users
+      (user_Id, username, email, password, create_at, update_at)
+      VALUES($1,$2,$3,$4,$5,$6)
+      `,
+      [
+        user.userId,
+        user.username,
+        user.email,
+        user.password,
+        user.createdAt,
+        user.updatedAt,
+      ],
+    );
+    return result.rows[0];
   },
 
-  getUser(email: string, password: string): User | undefined {
-    return usersFakeDatabase.find(
-      (user) => user.email === email && user.password === password,
+  async getUser(email: string, password: string) {
+    const result = await db.query(
+      `
+      SELECT * FROM users WHERE email = $1 AND password = $2
+      `,
+      [email, password],
     );
+    return result.rows[0];
   },
 };

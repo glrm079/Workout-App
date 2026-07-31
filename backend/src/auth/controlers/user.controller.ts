@@ -22,7 +22,7 @@ export const UserController = {
     }
   },
 
-  authenticateUser(req: Request, res: Response) {
+  signinUser(req: Request, res: Response) {
     if (!req.body) {
       return res.status(400).json({ error: "Missing requisition body" });
     }
@@ -34,7 +34,7 @@ export const UserController = {
     }
 
     try {
-      const isAuthenticated = UserService.authenticateUser(email, password);
+      const isAuthenticated = UserService.signinUser(email, password);
 
       if (!isAuthenticated) {
         return res.status(401).json({ error: "Invalid credentials" });

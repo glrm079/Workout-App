@@ -4,7 +4,8 @@ import { User } from "../../../@types";
 import { UserRepository } from "../repositories/user.repository";
 
 export const UserService = {
-  createUser(username: string, email: string, password: string): User {
+  createUser: async (username: string, email: string, password: string) => {
+    
     const newUser: User = {
       userId: uuidv4(),
       username,
@@ -14,11 +15,11 @@ export const UserService = {
       updatedAt: Date.now(),
     };
 
-    return UserRepository.create(newUser);
+    return await UserRepository.create(newUser);
   },
 
-  authenticateUser(email: string, password: string): unknown {
-    const user = UserRepository.getUser(email, password);
+  signinUser: async (email: string, password: string) => {
+    const user = await UserRepository.getUser(email, password);
 
     if (!user) {
       return false;
